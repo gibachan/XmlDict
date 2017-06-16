@@ -3,13 +3,17 @@ using System.Xml;
 
 namespace XmlDict
 {
-    public class XmlDictNode
+    public class XmlDictNode : IXmlDict
     {
         private XmlNode _node = null;
 
         private XmlAttributeList _attributes = new XmlAttributeList();
 
+        #region IXMLDict
         public string Text { get { return _node != null ? _node.InnerText : ""; } }
+
+        public bool Exists { get { return _node != null ? true : false; } }
+        #endregion
 
         public XmlAttributeList Attributes { get { return _attributes; } }
 

@@ -6,7 +6,13 @@ namespace XmlDict
     public class XmlDictNodeList
     {
         private List<XmlDictNode> _dictionaries = new List<XmlDictNode>();
-        
+
+        #region IXMLDict
+        public string Text { get { return FirstNode.Text; } }
+
+        public bool Exists { get { return _dictionaries.Count > 0 ? true : false; } }
+        #endregion
+
         public void Add(XmlDictNode dict)
         {
             _dictionaries.Add(dict);
@@ -23,9 +29,6 @@ namespace XmlDict
 
         public int Count { get { return _dictionaries.Count; } }
 
-        public bool Exists { get { return _dictionaries.Count > 0 ? true : false; } }
-
-        public string Text { get { return FirstNode.Text; } }
 
         public XmlDictNode this[string name]
         {
