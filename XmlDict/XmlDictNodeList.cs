@@ -13,6 +13,15 @@ namespace XmlDict
         public bool Exists { get { return _dictionaries.Count > 0 ? true : false; } }
 
         public XmlAttributeList Attributes { get { return FirstNode.Attributes; } }
+
+		public IEnumerable<IXmlDict> Enumerable
+		{
+			get
+			{
+				foreach (var child in _dictionaries)
+					yield return child;
+			}
+		}
         #endregion
 
         public void Add(XmlDictNode dict)

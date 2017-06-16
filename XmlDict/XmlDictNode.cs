@@ -15,6 +15,20 @@ namespace XmlDict
         public bool Exists { get { return _node != null ? true : false; } }
 
         public XmlAttributeList Attributes { get { return _attributes; } }
+
+        public IEnumerable<IXmlDict> Enumerable
+        {
+            get
+            {
+                if (_node != null)
+                {
+                    foreach (XmlNode child in _node.ChildNodes)
+                    {
+                        yield return new XmlDictNode(child);
+                    }
+                }
+            }
+        }
         #endregion
 
 
