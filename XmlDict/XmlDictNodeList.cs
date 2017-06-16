@@ -62,9 +62,7 @@ namespace XmlDict
             _dictionaries.RemoveAt(index);
         }
 
-
-
-        private XmlDictNode FirstNode
+        private IXmlDict FirstNode
         {
             get
             {
