@@ -1,12 +1,23 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace XmlDict
 {
-    interface IXmlDict
+    public interface IXmlDict
     {
         string Text { get; }
 
         bool Exists { get; }
 
         XmlAttributeList Attributes { get; }
+
+        IEnumerator<IXmlDict> GetEnumerator();
+
+        string Name { get; }
+
+        IXmlDict this[string name] { get; }
+
+        IXmlDict this[int index] { get; }
+
+        int Count { get; }
     }
 }
