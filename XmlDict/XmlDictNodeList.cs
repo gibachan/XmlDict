@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace XmlDict
 {
-    public class XmlDictNodeList
+    public class XmlDictNodeList : IXmlDict
     {
         private List<XmlDictNode> _dictionaries = new List<XmlDictNode>();
 
