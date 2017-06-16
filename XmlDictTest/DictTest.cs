@@ -93,6 +93,20 @@ namespace XmlDictNodeTest
         }
 
         [Fact]
+        public void ExistedNodeTest()
+        {
+            var node = new XmlDictNode("<Node />");
+            Assert.Equal(true, node.Exists);
+        }
+
+        [Fact]
+        public void NotExistedNodeTest()
+        {
+            var node = new XmlDictNode();
+            Assert.Equal(false, node.Exists);
+        }
+
+        [Fact]
         public void ExistedChildNodeTest()
         {
             var node = new XmlDictNode("<ParentNode><ChildNode /></ParentNode>");
@@ -105,6 +119,5 @@ namespace XmlDictNodeTest
             var node = new XmlDictNode("<ParentNode></ParentNode>");
             Assert.Equal(false, node["ChildNode"].Exists);
         }
-
     }
 }
