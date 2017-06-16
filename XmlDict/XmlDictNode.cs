@@ -13,9 +13,10 @@ namespace XmlDict
         public string Text { get { return _node != null ? _node.InnerText : ""; } }
 
         public bool Exists { get { return _node != null ? true : false; } }
-        #endregion
 
         public XmlAttributeList Attributes { get { return _attributes; } }
+        #endregion
+
 
         public XmlDictNodeList this[string name]
         {

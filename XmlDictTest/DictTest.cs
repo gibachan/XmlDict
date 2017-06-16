@@ -34,6 +34,20 @@ namespace XmlDictNodeTest
         }
 
         [Fact]
+        public void GetChildAttributeTest()
+        {
+            var node = new XmlDictNode("<Parent><Child Name='Name 123' Type='Type 456'></Child></Parent>");
+            Assert.Equal("Type 456", node["Child"].Attributes["Type"]);
+        }
+
+        [Fact]
+        public void GetMissingChildAttributeTest()
+        {
+            var node = new XmlDictNode("<Parent><Child Name='Name 123'></Child></Parent>");
+            Assert.Equal("", node["Child"].Attributes["Type"]);
+        }
+
+        [Fact]
         public void GetChildNodeTextTest()
         {
             var node = new XmlDictNode("<ParentNode><ChildNode>Hello world</ChildNode></ParentNode>");
