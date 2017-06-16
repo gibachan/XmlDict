@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace XmlDict
 {
@@ -11,6 +10,14 @@ namespace XmlDict
 
         XmlAttributeList Attributes { get; }
 
-        IEnumerable<IXmlDict> Enumerable { get; }
+        IEnumerator<IXmlDict> GetEnumerator();
+
+        string Name { get; }
+
+        IXmlDict this[string name] { get; }
+
+        IXmlDict this[int index] { get; }
+
+        int Count { get; }
     }
 }

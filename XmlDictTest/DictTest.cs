@@ -139,7 +139,7 @@ namespace XmlDictNodeTest
 		{
 			var node = new XmlDictNode("<ParentNode><Child>Child 1</Child><Other>Not Iterated</Other><Child>Child 2</Child><Child>Child 3</Child></ParentNode>");
             var counter = 0;
-            foreach (var child in node["Child"].Enumerable)
+            foreach (var child in node["Child"])
             {
                 switch (counter++)
                 {

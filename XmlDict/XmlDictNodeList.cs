@@ -14,17 +14,41 @@ namespace XmlDict
 
         public XmlAttributeList Attributes { get { return FirstNode.Attributes; } }
 
-		public IEnumerable<IXmlDict> Enumerable
+		public IEnumerator<IXmlDict> GetEnumerator()
+		{
+			foreach (var child in _dictionaries)
+				yield return child;
+		}
+
+        public string Name { get { return FirstNode.Name; } }
+
+		public IXmlDict this[string name]
 		{
 			get
 			{
-				foreach (var child in _dictionaries)
-					yield return child;
+				foreach (var node in FirstNode)
+				{
+					if (node.Name == name)
+						return node;
+				}
+				return new XmlDictNode();
 			}
 		}
-        #endregion
 
-        public void Add(XmlDictNode dict)
+		public IXmlDict this[int index]
+		{
+			get
+			{
+				if (index < 0 || index >= Count)
+					throw new ArgumentOutOfRangeException();
+				return _dictionaries[index];
+			}
+		}
+
+		public int Count { get { return _dictionaries.Count; } }
+		#endregion
+
+		public void Add(XmlDictNode dict)
         {
             _dictionaries.Add(dict);
         }
@@ -38,31 +62,6 @@ namespace XmlDict
             _dictionaries.RemoveAt(index);
         }
 
-        public int Count { get { return _dictionaries.Count; } }
-
-
-        public XmlDictNode this[string name]
-        {
-            get
-            {
-                foreach (var node in FirstNode)
-                {
-                    if (node.Name == name)
-                        return node;
-                }
-                return new XmlDictNode();
-            }
-        }
-
-        public XmlDictNode this[int index]
-        {
-            get
-            {
-                if (index < 0 || index >= Count)
-                    throw new ArgumentOutOfRangeException();
-                return _dictionaries[index];
-            }
-        }
 
 
         private XmlDictNode FirstNode

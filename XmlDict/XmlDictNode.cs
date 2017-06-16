@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace XmlDict
@@ -16,49 +17,46 @@ namespace XmlDict
 
         public XmlAttributeList Attributes { get { return _attributes; } }
 
-        public IEnumerable<IXmlDict> Enumerable
-        {
-            get
-            {
-                if (_node != null)
-                {
-                    foreach (XmlNode child in _node.ChildNodes)
-                    {
-                        yield return new XmlDictNode(child);
-                    }
-                }
-            }
-        }
-        #endregion
-
-
-        public XmlDictNodeList this[string name]
-        {
-            get
-            {
-                var collection = new XmlDictNodeList();
-                if (_node != null)
-                {
-                    foreach (XmlNode child in _node.ChildNodes)
-                    {
-                        if (child.Name == name)
-                            collection.Add(new XmlDictNode(child));
-                    }
-                }
-                return collection;
-            }
-        }
-
-        public IEnumerator<XmlDictNode> GetEnumerator()
+        public IEnumerator<IXmlDict> GetEnumerator()
         {
             if (_node != null)
             {
                 foreach (XmlNode child in _node.ChildNodes)
+                {
                     yield return new XmlDictNode(child);
+                }
             }
         }
 
-        public string Name { get { return _node != null ? _node.Name : ""; } }
+		public string Name { get { return _node != null ? _node.Name : ""; } }
+
+		public IXmlDict this[string name]
+		{
+			get
+			{
+				var collection = new XmlDictNodeList();
+				if (_node != null)
+				{
+					foreach (XmlNode child in _node.ChildNodes)
+					{
+						if (child.Name == name)
+							collection.Add(new XmlDictNode(child));
+					}
+				}
+				return collection;
+			}
+		}
+
+		public IXmlDict this[int index]
+		{
+			get
+			{
+			    throw new ArgumentOutOfRangeException();
+			}
+		}
+
+        public int Count { get { return 1; } }
+		#endregion
 
         public XmlDictNode()
         {
