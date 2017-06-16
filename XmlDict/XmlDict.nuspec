@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>gibachan</authors>
+    <owners>gibachan</owners>
+    <licenseUrl>https://github.com/gibachan/XmlDict/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/gibachan/XmlDict</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simply access to XML elements</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>XML</tags>
+  </metadata>
+</package>
