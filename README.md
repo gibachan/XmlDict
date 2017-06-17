@@ -14,8 +14,9 @@ Install-Package XmlDict
 ## Usage
 To get inner text
 ```
-var node = new XmlDictNode("<ParentNode><ChildNode>Hello world</ChildNode></ParentNode>");
-node["ChildNode"].Text;    // "Hello world"
+var node = new XmlDictNode("<ParentNode><ChildNode>123</ChildNode></ParentNode>");
+node["ChildNode"].Text;    // "123"
+node["ChildNode"].AsInt;    // 123
 ```
 
 To get attribute
