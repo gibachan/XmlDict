@@ -202,5 +202,14 @@ namespace XmlDictTest
             var node = new XmlDictNode(xml);
             Assert.Equal(expected, node.Attributes["Value"].AsDouble);
         }
+
+        [Theory]
+        [InlineData("<Node></Node>", false)]
+        [InlineData("<Node Value='abc'></Node>", true)]
+        public void AttributeExistanceTest(string xml, bool expected)
+        {
+            var node = new XmlDictNode(xml);
+            Assert.Equal(expected, node.Attributes["Value"].Exists);
+        }
     }
 }
