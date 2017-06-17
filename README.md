@@ -31,5 +31,17 @@ var node = new XmlDictNode("<ParentNode></ParentNode>");
 node["A"]["B"]["C"]["D"].Text;    // ""
 ```
 
+To iterate multiple nodes
+```
+var node = new XmlDictNode("<Parent><Child>1</Child><Child>2</Cihld><Child>3</Child></Parent>");
+foreach (var child in node["Child"])
+{
+  Console.WriteLine(child.Text);
+}
+// 1
+// 2
+// 3
+```
+
 ## License
 MIT license
