@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Simply access to XML elements</description>
     <releaseNotes>Initial release.</releaseNotes>
-    <copyright>Copyright 2017</copyright>
+    <copyright>Copyright 2017 gibachan</copyright>
     <tags>XML</tags>
   </metadata>
 </package>
