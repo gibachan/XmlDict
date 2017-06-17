@@ -1,9 +1,9 @@
 ﻿using XmlDict;
 using Xunit;
 
-namespace XmlDictNodeTest
+namespace XmlDictTest
 {
-	public class DictTest
+	public class XmlDictNodeTest
 	{
 		[Fact]
 		public void GetTextTest()
