@@ -25,6 +25,19 @@ namespace XmlDict
             }
         }
 
+		public double AsDouble
+		{
+			get
+			{
+				if (Text == "")
+					return 0.0;
+				double value = 0.0;
+				double.TryParse(Text, out value);
+				return value;
+			}
+		}
+
+
 		public bool Exists { get { return _node != null ? true : false; } }
 
         public XmlAttributeList Attributes { get { return _attributes; } }

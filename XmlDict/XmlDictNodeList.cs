@@ -12,7 +12,9 @@ namespace XmlDict
 
         public int AsInt { get { return FirstNode.AsInt; } }
 
-		public bool Exists { get { return _dictionaries.Count > 0 ? true : false; } }
+		public double AsDouble { get { return FirstNode.AsDouble; } }
+		
+        public bool Exists { get { return _dictionaries.Count > 0 ? true : false; } }
 
         public XmlAttributeList Attributes { get { return FirstNode.Attributes; } }
 

@@ -8,6 +8,8 @@ namespace XmlDict
 
 		int AsInt { get; }
 
+        double AsDouble { get; }
+
 		bool Exists { get; }
 
         XmlAttributeList Attributes { get; }
