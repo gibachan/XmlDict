@@ -4,9 +4,9 @@
     {
         private string _value;
 
-        public string AsString { get { return _value; } }
+        public string Value { get { return _value; } }
 
-        public int AsInt
+        public int ValueAsInt
         {
             get
             {
@@ -18,7 +18,7 @@
             }
         }
 
-        public double AsDouble
+        public double ValueAsDouble
         {
             get
             {

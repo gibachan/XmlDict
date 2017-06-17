@@ -16,13 +16,14 @@ To get inner text
 ```
 var node = new XmlDictNode("<ParentNode><ChildNode>123</ChildNode></ParentNode>");
 node["ChildNode"].Text;    // "123"
-node["ChildNode"].AsInt;    // 123
+node["ChildNode"].TextAsInt;    // 123
 ```
 
 To get attribute
 ```
-var node = new XmlDictNode("<Parent><Child Name='Name 123'></Child></Parent>");
-node["Child"].Attributes["Name"];    // "Name 123"
+var node = new XmlDictNode("<Parent><Child Name='123'></Child></Parent>");
+node["Child"].Attributes["Name"].Value;    // "123"
+node["Child"].Attributes["Name"].ValueAsInt;    // 123
 ```
 
 Allowed to access invalid node
@@ -38,9 +39,9 @@ foreach (var child in node["Child"])
 {
   Console.WriteLine(child.Text);
 }
-// 1
-// 2
-// 3
+// "1"
+// "2"
+// "3"
 ```
 
 ## License

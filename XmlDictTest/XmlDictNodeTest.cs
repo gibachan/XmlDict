@@ -30,28 +30,28 @@ namespace XmlDictTest
 		public void GetAttributeTest()
 		{
 			var node = new XmlDictNode("<Node Name='Name 123' Type='Type 456'></Node>");
-			Assert.Equal("Type 456", node.Attributes["Type"].AsString);
+			Assert.Equal("Type 456", node.Attributes["Type"].Value);
 		}
 
 		[Fact]
 		public void GetMissingAttributeTest()
 		{
 			var node = new XmlDictNode("<Node Name='Name 123'></Node>");
-			Assert.Equal("", node.Attributes["Type"].AsString);
+			Assert.Equal("", node.Attributes["Type"].Value);
 		}
 
 		[Fact]
 		public void GetChildAttributeTest()
 		{
 			var node = new XmlDictNode("<Parent><Child Name='Name 123' Type='Type 456'></Child></Parent>");
-			Assert.Equal("Type 456", node["Child"].Attributes["Type"].AsString);
+			Assert.Equal("Type 456", node["Child"].Attributes["Type"].Value);
 		}
 
 		[Fact]
 		public void GetMissingChildAttributeTest()
 		{
 			var node = new XmlDictNode("<Parent><Child Name='Name 123'></Child></Parent>");
-			Assert.Equal("", node["Child"].Attributes["Type"].AsString);
+			Assert.Equal("", node["Child"].Attributes["Type"].Value);
 		}
 
 		[Fact]
@@ -95,7 +95,7 @@ namespace XmlDictTest
 						Assert.Equal("Text A", child.Text);
 						break;
 					case "B":
-						Assert.Equal("Attr B", child.Attributes["Attr"].AsString);
+						Assert.Equal("Attr B", child.Attributes["Attr"].Value);
 						break;
 					case "C":
 						Assert.Equal("Text C", child.Text);
@@ -190,7 +190,7 @@ namespace XmlDictTest
         public void GetAttributeAsIntValueTest(string xml, int expected)
         {
             var node = new XmlDictNode(xml);
-            Assert.Equal(expected, node.Attributes["Value"].AsInt);
+            Assert.Equal(expected, node.Attributes["Value"].ValueAsInt);
         }
 
         [Theory]
@@ -200,7 +200,7 @@ namespace XmlDictTest
         public void GetAttributeAsDoubleValueTest(string xml, double expected)
         {
             var node = new XmlDictNode(xml);
-            Assert.Equal(expected, node.Attributes["Value"].AsDouble);
+            Assert.Equal(expected, node.Attributes["Value"].ValueAsDouble);
         }
 
         [Theory]
