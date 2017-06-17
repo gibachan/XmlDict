@@ -6,14 +6,14 @@ namespace XmlDict
     {
         private XmlAttributeCollection _attributes;
 
-        public string this[string key]
+        public XmlAttribute this[string key]
         {
             get
             {
                 if (_attributes != null && _attributes.GetNamedItem(key) != null)
-                    return _attributes.GetNamedItem(key).Value;
+                    return new XmlAttribute(_attributes.GetNamedItem(key).Value);
                 else
-                    return "";
+                    return new XmlAttribute();
             }
         }
 

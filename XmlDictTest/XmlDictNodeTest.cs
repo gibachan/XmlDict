@@ -30,28 +30,28 @@ namespace XmlDictTest
 		public void GetAttributeTest()
 		{
 			var node = new XmlDictNode("<Node Name='Name 123' Type='Type 456'></Node>");
-			Assert.Equal("Type 456", node.Attributes["Type"]);
+			Assert.Equal("Type 456", node.Attributes["Type"].AsString);
 		}
 
 		[Fact]
 		public void GetMissingAttributeTest()
 		{
 			var node = new XmlDictNode("<Node Name='Name 123'></Node>");
-			Assert.Equal("", node.Attributes["Type"]);
+			Assert.Equal("", node.Attributes["Type"].AsString);
 		}
 
 		[Fact]
 		public void GetChildAttributeTest()
 		{
 			var node = new XmlDictNode("<Parent><Child Name='Name 123' Type='Type 456'></Child></Parent>");
-			Assert.Equal("Type 456", node["Child"].Attributes["Type"]);
+			Assert.Equal("Type 456", node["Child"].Attributes["Type"].AsString);
 		}
 
 		[Fact]
 		public void GetMissingChildAttributeTest()
 		{
 			var node = new XmlDictNode("<Parent><Child Name='Name 123'></Child></Parent>");
-			Assert.Equal("", node["Child"].Attributes["Type"]);
+			Assert.Equal("", node["Child"].Attributes["Type"].AsString);
 		}
 
 		[Fact]
@@ -95,7 +95,7 @@ namespace XmlDictTest
 						Assert.Equal("Text A", child.Text);
 						break;
 					case "B":
-						Assert.Equal("Attr B", child.Attributes["Attr"]);
+						Assert.Equal("Attr B", child.Attributes["Attr"].AsString);
 						break;
 					case "C":
 						Assert.Equal("Text C", child.Text);
