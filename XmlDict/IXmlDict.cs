@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 
 namespace XmlDict
 {
@@ -6,7 +6,9 @@ namespace XmlDict
     {
         string Text { get; }
 
-        bool Exists { get; }
+		int AsInt { get; }
+
+		bool Exists { get; }
 
         XmlAttributeList Attributes { get; }
 

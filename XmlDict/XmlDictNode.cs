@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -13,7 +13,19 @@ namespace XmlDict
         #region IXMLDict
         public string Text { get { return _node != null ? _node.InnerText : ""; } }
 
-        public bool Exists { get { return _node != null ? true : false; } }
+        public int AsInt
+        {
+            get
+            {
+                if (Text == "")
+                    return 0;
+                int value = 0;
+                int.TryParse(Text, out value);
+                return value;
+            }
+        }
+
+		public bool Exists { get { return _node != null ? true : false; } }
 
         public XmlAttributeList Attributes { get { return _attributes; } }
 
@@ -58,7 +70,9 @@ namespace XmlDict
         public int Count { get { return 1; } }
 		#endregion
 
-        public XmlDictNode()
+		int DefaultInt { get; set; } = 0;
+
+		public XmlDictNode()
         {
         }
 

@@ -155,5 +155,15 @@ namespace XmlDictTest
 				}
             }
 		}
+
+        [Theory]
+        [InlineData("<Node></Node>", 0)]
+        [InlineData("<Node>abc</Node>", 0)]
+        [InlineData("<Node>123</Node>", 123)]
+        public void GetTextAsIntValueTest(string xml, int expected)
+        {
+            var node = new XmlDictNode(xml);
+            Assert.Equal(expected, node.AsInt);
+        }
     }
 }
