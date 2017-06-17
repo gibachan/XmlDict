@@ -83,8 +83,6 @@ namespace XmlDict
         public int Count { get { return 1; } }
 		#endregion
 
-		int DefaultInt { get; set; } = 0;
-
 		public XmlDictNode()
         {
         }
