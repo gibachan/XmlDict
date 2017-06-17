@@ -6,6 +6,13 @@ namespace XmlDictTest
 	public class XmlDictNodeTest
 	{
 		[Fact]
+		public void GetNameTest()
+		{
+			var node = new XmlDictNode("<Node>Hello world</Node>");
+			Assert.Equal("Node", node.Name);
+		}
+
+		[Fact]
 		public void GetTextTest()
 		{
 			var node = new XmlDictNode("<Node>Hello world</Node>");
