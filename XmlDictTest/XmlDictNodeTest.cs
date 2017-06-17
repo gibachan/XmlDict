@@ -1,10 +1,17 @@
 ﻿using XmlDict;
 using Xunit;
 
-namespace XmlDictNodeTest
+namespace XmlDictTest
 {
-	public class DictTest
+	public class XmlDictNodeTest
 	{
+		[Fact]
+		public void GetNameTest()
+		{
+			var node = new XmlDictNode("<Node>Hello world</Node>");
+			Assert.Equal("Node", node.Name);
+		}
+
 		[Fact]
 		public void GetTextTest()
 		{
@@ -23,28 +30,28 @@ namespace XmlDictNodeTest
 		public void GetAttributeTest()
 		{
 			var node = new XmlDictNode("<Node Name='Name 123' Type='Type 456'></Node>");
-			Assert.Equal("Type 456", node.Attributes["Type"]);
+			Assert.Equal("Type 456", node.Attributes["Type"].AsString);
 		}
 
 		[Fact]
 		public void GetMissingAttributeTest()
 		{
 			var node = new XmlDictNode("<Node Name='Name 123'></Node>");
-			Assert.Equal("", node.Attributes["Type"]);
+			Assert.Equal("", node.Attributes["Type"].AsString);
 		}
 
 		[Fact]
 		public void GetChildAttributeTest()
 		{
 			var node = new XmlDictNode("<Parent><Child Name='Name 123' Type='Type 456'></Child></Parent>");
-			Assert.Equal("Type 456", node["Child"].Attributes["Type"]);
+			Assert.Equal("Type 456", node["Child"].Attributes["Type"].AsString);
 		}
 
 		[Fact]
 		public void GetMissingChildAttributeTest()
 		{
 			var node = new XmlDictNode("<Parent><Child Name='Name 123'></Child></Parent>");
-			Assert.Equal("", node["Child"].Attributes["Type"]);
+			Assert.Equal("", node["Child"].Attributes["Type"].AsString);
 		}
 
 		[Fact]
@@ -88,7 +95,7 @@ namespace XmlDictNodeTest
 						Assert.Equal("Text A", child.Text);
 						break;
 					case "B":
-						Assert.Equal("Attr B", child.Attributes["Attr"]);
+						Assert.Equal("Attr B", child.Attributes["Attr"].AsString);
 						break;
 					case "C":
 						Assert.Equal("Text C", child.Text);
@@ -155,5 +162,54 @@ namespace XmlDictNodeTest
 				}
             }
 		}
+
+        [Theory]
+        [InlineData("<Node></Node>", 0)]
+        [InlineData("<Node>abc</Node>", 0)]
+        [InlineData("<Node>123</Node>", 123)]
+        public void GetTextAsIntValueTest(string xml, int expected)
+        {
+            var node = new XmlDictNode(xml);
+            Assert.Equal(expected, node.TextAsInt);
+        }
+
+		[Theory]
+		[InlineData("<Node></Node>", 0.0)]
+		[InlineData("<Node>abc</Node>", 0.0)]
+		[InlineData("<Node>123.45</Node>", 123.45)]
+		public void GetTextAsDoubleValueTest(string xml, double expected)
+		{
+			var node = new XmlDictNode(xml);
+			Assert.Equal(expected, node.TextAsDouble);
+		}
+
+        [Theory]
+        [InlineData("<Node></Node>", 0)]
+        [InlineData("<Node Value='abc'></Node>", 0)]
+        [InlineData("<Node Value='123'></Node>", 123)]
+        public void GetAttributeAsIntValueTest(string xml, int expected)
+        {
+            var node = new XmlDictNode(xml);
+            Assert.Equal(expected, node.Attributes["Value"].AsInt);
+        }
+
+        [Theory]
+        [InlineData("<Node></Node>", 0.0)]
+        [InlineData("<Node Value='abc'></Node>", 0.0)]
+        [InlineData("<Node Value='123.45'></Node>", 123.45)]
+        public void GetAttributeAsDoubleValueTest(string xml, double expected)
+        {
+            var node = new XmlDictNode(xml);
+            Assert.Equal(expected, node.Attributes["Value"].AsDouble);
+        }
+
+        [Theory]
+        [InlineData("<Node></Node>", false)]
+        [InlineData("<Node Value='abc'></Node>", true)]
+        public void AttributeExistanceTest(string xml, bool expected)
+        {
+            var node = new XmlDictNode(xml);
+            Assert.Equal(expected, node.Attributes["Value"].Exists);
+        }
     }
 }

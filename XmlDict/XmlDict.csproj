@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IXmlDict.cs" />
+    <Compile Include="XmlAttribute.cs" />
     <Compile Include="XmlAttributeList.cs" />
     <Compile Include="XmlDictNode.cs" />
     <Compile Include="XmlDictNodeList.cs" />
