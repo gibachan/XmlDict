@@ -10,9 +10,9 @@ namespace XmlDict
         #region IXMLDict
         public string Text { get { return FirstNode.Text; } }
 
-        public int AsInt { get { return FirstNode.AsInt; } }
+        public int TextAsInt { get { return FirstNode.TextAsInt; } }
 
-		public double AsDouble { get { return FirstNode.AsDouble; } }
+		public double TextAsDouble { get { return FirstNode.TextAsDouble; } }
 		
         public bool Exists { get { return _dictionaries.Count > 0 ? true : false; } }
 

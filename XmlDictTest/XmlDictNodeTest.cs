@@ -170,7 +170,7 @@ namespace XmlDictTest
         public void GetTextAsIntValueTest(string xml, int expected)
         {
             var node = new XmlDictNode(xml);
-            Assert.Equal(expected, node.AsInt);
+            Assert.Equal(expected, node.TextAsInt);
         }
 
 		[Theory]
@@ -180,7 +180,7 @@ namespace XmlDictTest
 		public void GetTextAsDoubleValueTest(string xml, double expected)
 		{
 			var node = new XmlDictNode(xml);
-			Assert.Equal(expected, node.AsDouble);
+			Assert.Equal(expected, node.TextAsDouble);
 		}
     }
 }

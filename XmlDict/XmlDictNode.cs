@@ -13,7 +13,7 @@ namespace XmlDict
         #region IXMLDict
         public string Text { get { return _node != null ? _node.InnerText : ""; } }
 
-        public int AsInt
+        public int TextAsInt
         {
             get
             {
@@ -25,8 +25,8 @@ namespace XmlDict
             }
         }
 
-		public double AsDouble
-		{
+		public double TextAsDouble
+        {
 			get
 			{
 				if (Text == "")

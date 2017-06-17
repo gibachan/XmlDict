@@ -6,9 +6,9 @@ namespace XmlDict
     {
         string Text { get; }
 
-		int AsInt { get; }
+		int TextAsInt { get; }
 
-        double AsDouble { get; }
+        double TextAsDouble { get; }
 
 		bool Exists { get; }
 
