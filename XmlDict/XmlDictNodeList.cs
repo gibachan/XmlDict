@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace XmlDict
 {
-    public class XmlDictNodeList : IXmlDict
+    public class XmlDictNodeList : IXmlDictNode
     {
         private List<XmlDictNode> _dictionaries = new List<XmlDictNode>();
 
@@ -18,7 +18,7 @@ namespace XmlDict
 
         public XmlAttributeList Attributes { get { return FirstNode.Attributes; } }
 
-		public IEnumerator<IXmlDict> GetEnumerator()
+		public IEnumerator<IXmlDictNode> GetEnumerator()
 		{
 			foreach (var child in _dictionaries)
 				yield return child;
@@ -26,7 +26,7 @@ namespace XmlDict
 
         public string Name { get { return FirstNode.Name; } }
 
-		public IXmlDict this[string name]
+		public IXmlDictNode this[string name]
 		{
 			get
 			{
@@ -39,7 +39,7 @@ namespace XmlDict
 			}
 		}
 
-		public IXmlDict this[int index]
+		public IXmlDictNode this[int index]
 		{
 			get
 			{
@@ -51,7 +51,7 @@ namespace XmlDict
 
 		public int Count { get { return _dictionaries.Count; } }
 
-		public IEnumerable<IXmlDict> Where(Func<IXmlDict, bool> predicate)
+		public IEnumerable<IXmlDictNode> Where(Func<IXmlDictNode, bool> predicate)
 		{
 			foreach (var node in _dictionaries)
 			{
@@ -78,7 +78,7 @@ namespace XmlDict
             _dictionaries.RemoveAt(index);
         }
 
-        private IXmlDict FirstNode
+        private IXmlDictNode FirstNode
         {
             get
             {

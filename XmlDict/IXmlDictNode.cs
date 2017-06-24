@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace XmlDict
 {
-    public interface IXmlDict
+    public interface IXmlDictNode
     {
         string Text { get; }
 
@@ -15,16 +15,16 @@ namespace XmlDict
 
         XmlAttributeList Attributes { get; }
 
-        IEnumerator<IXmlDict> GetEnumerator();
+        IEnumerator<IXmlDictNode> GetEnumerator();
 
         string Name { get; }
 
-        IXmlDict this[string name] { get; }
+        IXmlDictNode this[string name] { get; }
 
-        IXmlDict this[int index] { get; }
+        IXmlDictNode this[int index] { get; }
 
         int Count { get; }
 
-        IEnumerable<IXmlDict> Where(Func<IXmlDict, bool> predicate);
+        IEnumerable<IXmlDictNode> Where(Func<IXmlDictNode, bool> predicate);
     }
 }
