@@ -50,6 +50,18 @@ namespace XmlDict
 		}
 
 		public int Count { get { return _dictionaries.Count; } }
+
+		public IEnumerable<IXmlDict> Where(Func<IXmlDict, bool> predicate)
+		{
+			foreach (var node in _dictionaries)
+			{
+				if (predicate(node))
+				{
+					yield return node;
+				}
+			}
+		}
+
 		#endregion
 
 		public void Add(XmlDictNode dict)

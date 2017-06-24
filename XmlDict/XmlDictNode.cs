@@ -81,6 +81,13 @@ namespace XmlDict
 		}
 
         public int Count { get { return 1; } }
+
+		public IEnumerable<IXmlDict> Where(Func<IXmlDict, bool> predicate)
+		{
+            if (predicate(this))
+                yield return this;
+		}
+
 		#endregion
 
 		public XmlDictNode()

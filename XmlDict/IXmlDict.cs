@@ -1,4 +1,5 @@
-﻿﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace XmlDict
 {
@@ -23,5 +24,7 @@ namespace XmlDict
         IXmlDict this[int index] { get; }
 
         int Count { get; }
+
+        IEnumerable<IXmlDict> Where(Func<IXmlDict, bool> predicate);
     }
 }
