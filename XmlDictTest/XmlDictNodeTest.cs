@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿﻿using System.Linq;
 using XmlDict;
 using Xunit;
 
@@ -216,8 +216,18 @@ namespace XmlDictTest
         [Fact]
         public void LinqTest()
         {
-            var node = new XmlDictNode("<ParentNode><Child Value='1'>Child A</Child><Child Value='2'>Child B</Child><Child Value='3'>Child C</Child></ParentNode>");
-            var childOfValue2 =
+            var node = new XmlDictNode("<Parent><Child Value='1'>Child A</Child><Child Value='2'>Child B</Child><Child Value='3'>Child C</Child></Parent>");
+            var childOfValue1 =
+				from p in node
+				where p.Attributes["Value"].ValueAsInt == 1
+				select p;
+
+            System.Console.WriteLine(childOfValue1.First().Name);
+
+			Assert.Equal(1, childOfValue1.Count());
+			Assert.Equal("Child A", childOfValue1.First().Text);
+
+			var childOfValue2 =
                 from p in node["Child"]
                 where p.Attributes["Value"].ValueAsInt == 2
                 select p;

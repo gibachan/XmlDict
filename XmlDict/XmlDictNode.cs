@@ -84,8 +84,12 @@ namespace XmlDict
 
 		public IEnumerable<IXmlDict> Where(Func<IXmlDict, bool> predicate)
 		{
-            if (predicate(this))
-                yield return this;
+			foreach (XmlNode child in _node.ChildNodes)
+			{
+                var node = new XmlDictNode(child);
+                if (predicate(node))
+					yield return node;
+			}
 		}
 
 		#endregion
