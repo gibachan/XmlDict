@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace XmlDict
 {
-    public class XmlDictNode : IXmlDict
+    public class XmlDictNode : IXmlDictNode
     {
         private XmlNode _node = null;
 
@@ -42,7 +42,7 @@ namespace XmlDict
 
         public XmlAttributeList Attributes { get { return _attributes; } }
 
-        public IEnumerator<IXmlDict> GetEnumerator()
+        public IEnumerator<IXmlDictNode> GetEnumerator()
         {
             if (_node != null)
             {
@@ -55,7 +55,7 @@ namespace XmlDict
 
 		public string Name { get { return _node != null ? _node.Name : ""; } }
 
-		public IXmlDict this[string name]
+		public IXmlDictNode this[string name]
 		{
 			get
 			{
@@ -72,7 +72,7 @@ namespace XmlDict
 			}
 		}
 
-		public IXmlDict this[int index]
+		public IXmlDictNode this[int index]
 		{
 			get
 			{
@@ -81,6 +81,17 @@ namespace XmlDict
 		}
 
         public int Count { get { return 1; } }
+
+		public IEnumerable<IXmlDictNode> Where(Func<IXmlDictNode, bool> predicate)
+		{
+			foreach (XmlNode child in _node.ChildNodes)
+			{
+                var node = new XmlDictNode(child);
+                if (predicate(node))
+					yield return node;
+			}
+		}
+
 		#endregion
 
 		public XmlDictNode()
